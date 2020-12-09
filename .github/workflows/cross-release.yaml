@@ -41,7 +41,7 @@ jobs:
         LIBOPUS_STATIC: 1
 
     - name: Pack
-      run: zip -j suzumi-${{matrix.target}}.zip target/${{matrix.target}}/release/suzumi
+      run: zip -j lotp-${{matrix.target}}.zip target/${{matrix.target}}/release/lotp
 
     - name: Upload to release Unix
       run: |
@@ -51,5 +51,5 @@ jobs:
           -XPOST \
           -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
           -H "Content-Type: application/zip" \
-          --upload-file "suzumi-${{matrix.target}}.zip" \
-          "https://uploads.github.com/repos/$GITHUB_REPOSITORY/releases/$(jq --raw-output '.release.id' $GITHUB_EVENT_PATH)/assets?name=suzumi-${{matrix.target}}.zip"
+          --upload-file "lotp-${{matrix.target}}.zip" \
+          "https://uploads.github.com/repos/$GITHUB_REPOSITORY/releases/$(jq --raw-output '.release.id' $GITHUB_EVENT_PATH)/assets?name=lotp-${{matrix.target}}.zip"
