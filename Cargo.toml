@@ -1,0 +1,33 @@
+[package]
+name = "lotp"
+version = "1.0.0"
+authors = ["Douman <douman@gmx.se>"]
+edition = "2018"
+repository = "https://github.com/DoumanAsh/lotp"
+description = "Simple & small CLI tool to generate OTP (one time password)"
+keywords = ["otp", "totp"]
+categories = ["authentication"]
+include = [
+    "**/*.rs",
+    "Cargo.toml",
+    "README.md"
+]
+
+[dependencies.otpshka]
+version = "1"
+features = ["std"]
+
+[target.'cfg(windows)'.dependencies.winapi]
+version = "0.3"
+features = ["processenv", "consoleapi", "winbase", "wincon", "handleapi"]
+
+[dependencies]
+sec-store = "1.0.0-alpha.2"
+serde_json = "1"
+data-encoding = "2"
+whoami = "1"
+
+[profile.release]
+lto = true
+opt-level = "z"
+codegen-units = 1
